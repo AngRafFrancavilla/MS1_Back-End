@@ -10,19 +10,17 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-    // PasswordEncoder usato nel tuo UserService
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // Configurazione per permettere tutte le chiamate senza autenticazione
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // disabilita CSRF (necessario se testi da Postman o frontend)
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll() // 🔓 tutte le chiamate libere
+                        .anyRequest().permitAll() //  tutte le chiamate libere
                 );
         return http.build();
     }
