@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.domain.Pageable;
 
 public interface ReviewRepository extends JpaRepository<Review, Long> {
-    Page<Review> findByTitleIdOrderByVerifiedDescCreateAtDesc(Long titleId, Pageable pageable);
+    Page<Review> findByTitleIdOrderByVerifiedDescCreatedAtDesc(Long titleId, Pageable pageable);
 }
