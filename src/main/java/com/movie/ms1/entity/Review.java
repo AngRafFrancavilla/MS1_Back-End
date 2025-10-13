@@ -3,6 +3,7 @@ package com.movie.ms1.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -26,7 +27,7 @@ public class Review {
     private Title title;
 
     @Column(nullable = false, precision = 2, scale = 1)
-    private Double rating;
+    private BigDecimal rating;
 
     @Column(columnDefinition = "TEXT")
     private String content;
@@ -39,3 +40,4 @@ public class Review {
 
     private LocalDateTime updatedAt;
 }
+

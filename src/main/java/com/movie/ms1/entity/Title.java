@@ -33,6 +33,6 @@ public class Title {
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    @ManyToMany(mappedBy = "titles")
-    private Set<User> users = new HashSet<>();
+    @OneToMany(mappedBy = "title", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<UserTitle> userTitles = new HashSet<>();
 }
