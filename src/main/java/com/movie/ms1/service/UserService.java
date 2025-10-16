@@ -12,20 +12,20 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-@RequiredArgsConstructor //
+@RequiredArgsConstructor
 
 public class UserService {
 
-    private final UserRepository userRepository; //
+    private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-    private final PasswordEncoder passwordEncoder; //
+    private final PasswordEncoder passwordEncoder;
 
     public User registerUser(User user){
         if(userRepository.existsByEmail((user.getEmail()))){
             throw  new RuntimeException("Email già registrata");
         }
-        user.setPassword(passwordEncoder.encode(user.getPassword())); //
-        user.setEnabled(true);//
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setEnabled(true);
 
         Role roleUser = roleRepository.findByName("USER")
                 .orElseThrow(() -> new RuntimeException("Ruolo USER non trovato"));
