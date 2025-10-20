@@ -50,8 +50,8 @@ public class ReviewController {
     public ResponseEntity<Page<ReviewDTO>> getReviews(@PathVariable Long titleId,
                                                       @RequestParam(defaultValue = "0") int page,
                                                       @RequestParam(defaultValue = "10") int size) {
-        Page<Review> reviews = reviewService.getReviewsForTitle(titleId, page, size);
-        return ResponseEntity.ok(reviews.map(reviewMapper::toDto));
+        Page<ReviewDTO> reviews = reviewService.getReviewsForTitle(titleId, page, size);
+        return ResponseEntity.ok(reviews);
     }
 
     @PutMapping("/{reviewId}/approve")

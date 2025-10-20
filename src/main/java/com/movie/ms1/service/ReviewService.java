@@ -1,8 +1,10 @@
 package com.movie.ms1.service;
 
+import com.movie.ms1.dto.ReviewDTO;
 import com.movie.ms1.entity.Review;
 import com.movie.ms1.entity.Title;
 import com.movie.ms1.entity.User;
+import com.movie.ms1.mapper.ReviewMapper;
 import com.movie.ms1.repository.ReviewRepository;
 import com.movie.ms1.repository.TitleRepository;
 import com.movie.ms1.repository.UserRepository;
@@ -21,6 +23,7 @@ public class ReviewService {
     private final ReviewRepository reviewRepository;
     private final UserRepository userRepository;
     private final TitleRepository titleRepository;
+    private final ReviewMapper reviewMapper;
 
     public Review createReview(Long userId, Long titleId, BigDecimal rating, String content) {
         User user = userRepository.findById(userId).orElseThrow();
@@ -53,10 +56,11 @@ public class ReviewService {
         return reviewRepository.save(review);
     }
 
-    public Page<Review> getReviewsForTitle(Long titleId, int page, int size) {
-        return reviewRepository.findByTitleIdOrderByVerifiedDescCreatedAtDesc(
-                titleId,
-                PageRequest.of(page, size)
-        );
+
+    public Page<ReviewDTO> getReviewsForTitle(Long titleId, int page, int size) {
+        return reviewRepository.findByTitleIdOrderByVerifiedDescCreatedAtDesc(titleId, PageRequest.of(page, size))
+                .map(reviewMapper::toDto);
     }
+
+
 }
