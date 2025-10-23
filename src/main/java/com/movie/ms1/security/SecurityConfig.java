@@ -42,11 +42,11 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/users/register", "/api/users/login").permitAll()
+                        .requestMatchers("/api/users/register", "/api/users/login", "/api/reviews/for-rating").permitAll()
                         .requestMatchers("/api/users/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
-                .authenticationProvider(authenticationProvider()) // AGGIUNGI QUESTA RIGA
+                .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

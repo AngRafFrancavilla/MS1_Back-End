@@ -1,6 +1,7 @@
 package com.movie.ms1.controller;
 
 import com.movie.ms1.dto.ReviewDTO;
+import com.movie.ms1.dto.ReviewForRatingDTO;
 import com.movie.ms1.entity.Review;
 import com.movie.ms1.mapper.ReviewMapper;
 import com.movie.ms1.repository.UserRepository;
@@ -14,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/reviews")
@@ -38,7 +40,7 @@ public class ReviewController {
                                                   @RequestBody ReviewDTO dto,
                                                   @AuthenticationPrincipal UserDetails userDetails) {
         Review review = reviewService.createReview(
-                getUserIdFromPrincipal(userDetails), // ora funziona
+                getUserIdFromPrincipal(userDetails),
                 titleId,
                 dto.getRating(),
                 dto.getContent()
@@ -67,4 +69,12 @@ public class ReviewController {
         Review review = reviewService.verifyReview(reviewId);
         return ResponseEntity.ok(reviewMapper.toDto(review));
     }
+
+    @GetMapping("/for-rating")
+    public List<ReviewForRatingDTO> getAllApprovedReviewsForRating() {
+        return reviewService.getAllApprovedReviewsForRating();
+    }
+
+
+
 }

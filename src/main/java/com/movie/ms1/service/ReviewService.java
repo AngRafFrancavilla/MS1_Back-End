@@ -1,6 +1,7 @@
 package com.movie.ms1.service;
 
 import com.movie.ms1.dto.ReviewDTO;
+import com.movie.ms1.dto.ReviewForRatingDTO;
 import com.movie.ms1.entity.Review;
 import com.movie.ms1.entity.Title;
 import com.movie.ms1.entity.User;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -60,6 +62,17 @@ public class ReviewService {
     public Page<ReviewDTO> getReviewsForTitle(Long titleId, int page, int size) {
         return reviewRepository.findByTitleIdOrderByVerifiedDescCreatedAtDesc(titleId, PageRequest.of(page, size))
                 .map(reviewMapper::toDto);
+    }
+
+    public List<ReviewForRatingDTO> getAllApprovedReviewsForRating() {
+        List<Review> reviews = reviewRepository.findByApprovedTrue();
+        return reviews.stream()
+                .map(r -> ReviewForRatingDTO.builder()
+                        .titleId(r.getTitle().getId())
+                        .rating(r.getRating())
+                        .approved(r.getApproved())
+                        .build())
+                .collect(Collectors.toList());
     }
 
 

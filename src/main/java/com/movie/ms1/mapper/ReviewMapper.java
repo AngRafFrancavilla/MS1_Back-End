@@ -16,4 +16,5 @@ public interface ReviewMapper {
     @Mapping(target = "user", ignore = true)
     @Mapping(target = "title", ignore = true)
     void updateEntityFromDto(ReviewDTO dto, @MappingTarget Review entity);
+
 }

@@ -28,4 +28,3 @@ public class UserTitle {
 
     private LocalDateTime addedAt = LocalDateTime.now();
 }
-
