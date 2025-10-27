@@ -74,7 +74,4 @@ public class ReviewController {
     public List<ReviewForRatingDTO> getAllApprovedReviewsForRating() {
         return reviewService.getAllApprovedReviewsForRating();
     }
-
-
-
 }
