@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserTitleRepository extends JpaRepository<UserTitle, Long> {
     Page<UserTitle> findByUserId(Long userId, Pageable pageable);
+    boolean existsByUserIdAndTitleId(Long userId, Long titleId);
 }

@@ -18,14 +18,12 @@ public class UserTitleController {
     private final TitleMapper titleMapper;
 
     @PostMapping("/{titleId}")
-    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Void> addToWatchlist(@PathVariable Long userId, @PathVariable Long titleId) {
         userTitleService.addTitleToUser(userId, titleId);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<Page<TitleDTO>> getUserTitles(@PathVariable Long userId,
                                                         @RequestParam(defaultValue = "0") int page,
                                                         @RequestParam(defaultValue = "10") int size) {
