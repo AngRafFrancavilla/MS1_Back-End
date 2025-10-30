@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/reviews")
 @RequiredArgsConstructor
@@ -74,4 +75,11 @@ public class ReviewController {
     public List<ReviewForRatingDTO> getAllApprovedReviewsForRating() {
         return reviewService.getAllApprovedReviewsForRating();
     }
+    @GetMapping("/public/title/{titleId}")
+    public ResponseEntity<List<ReviewDTO>> getPublicReviewsByTitle(@PathVariable Long titleId) {
+        List<ReviewDTO> reviews = reviewService.getReviewsForTitle(titleId, 0, 100)
+                .getContent();
+        return ResponseEntity.ok(reviews);
+    }
+
 }
