@@ -1,7 +1,9 @@
 package com.movie.ms1.service;
 
+import com.movie.ms1.dto.UserDTO;
 import com.movie.ms1.entity.Role;
 import com.movie.ms1.entity.User;
+import com.movie.ms1.mapper.UserMapper;
 import com.movie.ms1.repository.RoleRepository;
 import com.movie.ms1.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,17 +15,19 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-
 public class UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserMapper userMapper;
 
-    public User registerUser(User user){
-        if(userRepository.existsByEmail((user.getEmail()))){
+    public User registerUser(UserDTO dto){
+        if(userRepository.existsByEmail(dto.getEmail())){
             throw  new RuntimeException("Email già registrata");
         }
+
+        User user = userMapper.toEntity(dto);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setEnabled(true);
 
@@ -34,14 +38,17 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User createAdmin(User user) {
-        user.setPassword(passwordEncoder.encode((user.getPassword())));
+    public User createAdmin(UserDTO dto) {
+
+        User user = userMapper.toEntity(dto);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setEnabled(true);
 
         Role roleAdmin = roleRepository.findByName("ADMIN")
                 .orElseThrow(() -> new RuntimeException("Ruolo ADMIN non trovato"));
 
         user.setRoles(Set.of(roleAdmin));
+
         return userRepository.save(user);
     }
 
