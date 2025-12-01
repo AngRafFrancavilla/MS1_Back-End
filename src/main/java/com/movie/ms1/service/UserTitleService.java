@@ -1,45 +1,11 @@
 package com.movie.ms1.service;
 
 import com.movie.ms1.dto.TitleDTO;
-import com.movie.ms1.entity.Title;
-import com.movie.ms1.entity.User;
-import com.movie.ms1.entity.UserTitle;
-import com.movie.ms1.entity.UserTitleId;
-import com.movie.ms1.mapper.TitleMapper;
-import com.movie.ms1.repository.TitleRepository;
-import com.movie.ms1.repository.UserRepository;
-import com.movie.ms1.repository.UserTitleRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Service;
 
-@Service
-@RequiredArgsConstructor
-public class UserTitleService {
-    private final UserRepository userRepository;
-    private final TitleRepository titleRepository;
-    private final UserTitleRepository userTitleRepository;
+public interface UserTitleService {
 
-    public void addTitleToUser(Long userId, Long titleId) {
-        User user = userRepository.findById(userId).orElseThrow();
-        Title title = titleRepository.findById(titleId).orElseThrow();
+    void addTitleToUser(Long userId, Long titleId);
 
-        if (userTitleRepository.existsByUserIdAndTitleId(userId, titleId)) {
-            throw new IllegalStateException("Titolo già presente nella bacheca");
-        }
-
-        UserTitleId id = new UserTitleId(userId, titleId);
-        UserTitle userTitle = UserTitle.builder()
-                .id(id)
-                .user(user)
-                .title(title)
-                .build();
-
-        userTitleRepository.save(userTitle);
-    }
-    public Page<TitleDTO> getUserTitles(Long userId, int page, int size, TitleMapper mapper) {
-        return userTitleRepository.findByUserId(userId, PageRequest.of(page, size))
-                .map(userTitle -> mapper.toDto(userTitle.getTitle()));
-    }
+    Page<TitleDTO> getUserTitles(Long userId, int page, int size);
 }

@@ -49,14 +49,6 @@ public class ReviewController {
         return ResponseEntity.ok(reviewMapper.toDto(review));
     }
 
-    @GetMapping("/title/{titleId}")
-    public ResponseEntity<Page<ReviewDTO>> getReviews(@PathVariable Long titleId,
-                                                      @RequestParam(defaultValue = "0") int page,
-                                                      @RequestParam(defaultValue = "10") int size) {
-        Page<ReviewDTO> reviews = reviewService.getReviewsForTitle(titleId, page, size);
-        return ResponseEntity.ok(reviews);
-    }
-
     @PutMapping("/{reviewId}/approve")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ReviewDTO> approveReview(@PathVariable Long reviewId) {
@@ -75,6 +67,7 @@ public class ReviewController {
     public List<ReviewForRatingDTO> getAllApprovedReviewsForRating() {
         return reviewService.getAllApprovedReviewsForRating();
     }
+
     @GetMapping("/public/title/{titleId}")
     public ResponseEntity<List<ReviewDTO>> getPublicReviewsByTitle(@PathVariable Long titleId) {
         List<ReviewDTO> reviews = reviewService.getReviewsForTitle(titleId, 0, 100)

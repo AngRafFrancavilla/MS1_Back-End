@@ -13,10 +13,12 @@ C:\Users\A577_Apulia\Desktop\OverZoom\ms1\src\main\java\com\movie\ms1\repository
 C:\Users\A577_Apulia\Desktop\OverZoom\ms1\src\main\java\com\movie\ms1\Ms1Application.java
 C:\Users\A577_Apulia\Desktop\OverZoom\ms1\src\main\java\com\movie\ms1\repository\UserRepository.java
 C:\Users\A577_Apulia\Desktop\OverZoom\ms1\src\main\java\com\movie\ms1\entity\UserTitleId.java
+C:\Users\A577_Apulia\Desktop\OverZoom\ms1\src\main\java\com\movie\ms1\dto\UserDTO.java
 C:\Users\A577_Apulia\Desktop\OverZoom\ms1\src\main\java\com\movie\ms1\entity\Role.java
 C:\Users\A577_Apulia\Desktop\OverZoom\ms1\src\main\java\com\movie\ms1\repository\TitleRepository.java
 C:\Users\A577_Apulia\Desktop\OverZoom\ms1\src\main\java\com\movie\ms1\entity\Title.java
 C:\Users\A577_Apulia\Desktop\OverZoom\ms1\src\main\java\com\movie\ms1\mapper\TitleMapper.java
+C:\Users\A577_Apulia\Desktop\OverZoom\ms1\src\main\java\com\movie\ms1\mapper\UserMapper.java
 C:\Users\A577_Apulia\Desktop\OverZoom\ms1\src\main\java\com\movie\ms1\dto\ReviewDTO.java
 C:\Users\A577_Apulia\Desktop\OverZoom\ms1\src\main\java\com\movie\ms1\controller\UserTitleController.java
 C:\Users\A577_Apulia\Desktop\OverZoom\ms1\src\main\java\com\movie\ms1\repository\UserTitleRepository.java

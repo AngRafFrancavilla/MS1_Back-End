@@ -16,6 +16,7 @@ com\movie\ms1\controller\ReviewController.class
 com\movie\ms1\repository\ReviewRepository.class
 com\movie\ms1\security\SecurityConfig.class
 com\movie\ms1\repository\TitleRepository.class
+com\movie\ms1\dto\UserDTO.class
 com\movie\ms1\entity\User.class
 com\movie\ms1\controller\AuthRequest.class
 com\movie\ms1\entity\UserTitle.class
@@ -37,5 +38,7 @@ com\movie\ms1\entity\Title$TitleBuilder.class
 com\movie\ms1\controller\TitleController.class
 com\movie\ms1\repository\UserRepository.class
 com\movie\ms1\Ms1Application.class
+com\movie\ms1\mapper\UserMapper.class
 com\movie\ms1\repository\RoleRepository.class
 com\movie\ms1\entity\User$UserBuilder.class
+com\movie\ms1\mapper\UserMapperImpl.class

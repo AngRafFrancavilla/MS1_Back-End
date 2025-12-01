@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-11-01T17:59:41+0100",
-    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.44.0.v20251023-0518, environment: Java 21.0.8 (Eclipse Adoptium)"
+    date = "2025-11-28T13:14:56+0100",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 22.0.1 (Oracle Corporation)"
 )
 @Component
 public class ReviewMapperImpl implements ReviewMapper {
@@ -21,12 +21,12 @@ public class ReviewMapperImpl implements ReviewMapper {
 
         ReviewDTO.ReviewDTOBuilder reviewDTO = ReviewDTO.builder();
 
-        reviewDTO.approved( review.getApproved() );
-        reviewDTO.content( review.getContent() );
-        reviewDTO.createdAt( review.getCreatedAt() );
         reviewDTO.id( review.getId() );
+        reviewDTO.content( review.getContent() );
         reviewDTO.rating( review.getRating() );
         reviewDTO.verified( review.getVerified() );
+        reviewDTO.approved( review.getApproved() );
+        reviewDTO.createdAt( review.getCreatedAt() );
 
         return reviewDTO.build();
     }
@@ -39,12 +39,12 @@ public class ReviewMapperImpl implements ReviewMapper {
 
         Review.ReviewBuilder review = Review.builder();
 
-        review.approved( reviewDTO.getApproved() );
-        review.content( reviewDTO.getContent() );
-        review.createdAt( reviewDTO.getCreatedAt() );
         review.id( reviewDTO.getId() );
         review.rating( reviewDTO.getRating() );
+        review.content( reviewDTO.getContent() );
         review.verified( reviewDTO.getVerified() );
+        review.approved( reviewDTO.getApproved() );
+        review.createdAt( reviewDTO.getCreatedAt() );
 
         return review.build();
     }
@@ -55,11 +55,11 @@ public class ReviewMapperImpl implements ReviewMapper {
             return;
         }
 
-        entity.setApproved( dto.getApproved() );
-        entity.setContent( dto.getContent() );
-        entity.setCreatedAt( dto.getCreatedAt() );
         entity.setId( dto.getId() );
         entity.setRating( dto.getRating() );
+        entity.setContent( dto.getContent() );
         entity.setVerified( dto.getVerified() );
+        entity.setApproved( dto.getApproved() );
+        entity.setCreatedAt( dto.getCreatedAt() );
     }
 }

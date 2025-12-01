@@ -27,6 +27,6 @@ public class UserTitleController {
     public ResponseEntity<Page<TitleDTO>> getUserTitles(@PathVariable Long userId,
                                                         @RequestParam(defaultValue = "0") int page,
                                                         @RequestParam(defaultValue = "10") int size) {
-        return ResponseEntity.ok(userTitleService.getUserTitles(userId, page, size, titleMapper));
+        return ResponseEntity.ok(userTitleService.getUserTitles(userId, page, size));
     }
 }
